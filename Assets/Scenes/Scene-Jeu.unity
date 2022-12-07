@@ -465,6 +465,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2095758775}
     m_Modifications:
+    - target: {fileID: 3276208511220377315, guid: eff68d439845b1742a8a9b3735364075, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276208511220377315, guid: eff68d439845b1742a8a9b3735364075, type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 3739620177175676932, guid: eff68d439845b1742a8a9b3735364075, type: 3}
       propertyPath: m_Name
       value: Player
@@ -511,14 +519,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4084232768286937790, guid: eff68d439845b1742a8a9b3735364075, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4549943412314999563, guid: eff68d439845b1742a8a9b3735364075, type: 3}
-      propertyPath: acces
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4549943412314999563, guid: eff68d439845b1742a8a9b3735364075, type: 3}
-      propertyPath: modeCombat
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
