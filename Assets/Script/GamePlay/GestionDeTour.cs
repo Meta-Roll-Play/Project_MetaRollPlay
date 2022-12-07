@@ -7,14 +7,17 @@ using UnityEngine;
 
 public class GestionDeTour : MonoBehaviour
 {
+
+    //selection de Joueur
+    [Header("Variable de joueur")]
     public List<GameObject> listJoueur;
     public bool all;
     public int selection;
-
+    //changement des variables du joueur
     public int step;
     public bool modeCombat;
     public bool acces;
-
+    //envoyer les variables selectionner
     public bool send;
 
     private void Start()
