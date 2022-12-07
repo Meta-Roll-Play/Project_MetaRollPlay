@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Fait par Callaghan
+
 public class FreeCam : MonoBehaviour
 {
     // Script that enable to move camera freely
