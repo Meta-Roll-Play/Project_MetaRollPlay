@@ -9,20 +9,6 @@ using UnityEngine;
 public class DeplacementHorsCombat : MonoBehaviour
 {
 
-    public CharacterController controller;
-    [Header("Attribut")]
-    public int Life;
-
-    [Header("Movement")]
-    private float flatSpeed = 5f;
-    public float speed = 0f;
-
-    [Header("Camera")]
-    public Transform orientation;
-    public float rotationSpeed;
-    public Transform camer;
-
-
     Vector3 velocity;
 
 
@@ -61,19 +47,20 @@ public class DeplacementHorsCombat : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         //rotate
-        Vector3 viewDirection = transform.position - new Vector3(camer.position.x, transform.position.y, camer.position.z);
-        orientation.forward = viewDirection.normalized;
+        Vector3 viewDirection = transform.position - new Vector3(GetComponent<VariableDuJoueur>().camer.position.x, transform.position.y, GetComponent<VariableDuJoueur>().camer.position.z);
+        GetComponent<VariableDuJoueur>().orientation.forward = viewDirection.normalized;
 
 
         //set up en vector3
-        Vector3 move = orientation.forward * z + orientation.right * x;
+        Vector3 move = GetComponent<VariableDuJoueur>().orientation.forward * z + GetComponent<VariableDuJoueur>().orientation.right * x;
 
         //si pas immobile
         if (move != Vector3.zero)
         {
             //deplacement
-            controller.Move(move * speed * Time.deltaTime);
-            transform.forward = Vector3.Lerp(transform.forward, move.normalized, Time.deltaTime * rotationSpeed);
+            GetComponent<VariableDuJoueur>().controller.Move(move * GetComponent<VariableDuJoueur>().speed * Time.deltaTime);
+            transform.forward = Vector3.Lerp(transform.forward, move.normalized, Time.deltaTime * GetComponent<VariableDuJoueur>().rotationSpeed);
         }
+
     }
 }

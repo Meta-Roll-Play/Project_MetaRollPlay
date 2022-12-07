@@ -7,25 +7,21 @@ using UnityEngine;
 
 public class VariableDuJoueur : MonoBehaviour
 {
-
-    [Header("Mouvement")]
-    public float speed = 5f;
-    public Vector3 velocity;
-    public float gravity = -9.10f;
-    public CharacterController controllePlayer;
-
+    public CharacterController controller;
     [Header("Attribut")]
-    public int life;
+    public int Life;
+
+    [Header("Movement")]
+    public float speed;
+
+    [Header("Camera")]
+    public Transform orientation;
+    public float rotationSpeed;
+    public Transform camer;
 
     [Header("Possession")]
     public bool acces;
     public bool modeCombat;
 
-
-    [Header("Rotation du personnage")]
-    public Transform orientation;
-    public float rotationSpeed;
-    public float mouseSensitivityX = 100f;
-    public float mouseSensitivityY = 100f;
 
 }
