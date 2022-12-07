@@ -74,6 +74,11 @@ public class VariableDuJoueur : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0, xRotation, 0);
         orientation.rotation = Quaternion.Euler(yRotation,xRotation, 0);
+
+
+
+        //l'animation qui est entrain d'etre joué
+        animationIsPlaying = anim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
     }
 
 
