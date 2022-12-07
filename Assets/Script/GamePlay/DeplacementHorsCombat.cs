@@ -24,42 +24,38 @@ public class DeplacementHorsCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //visibilité de la souris
-        if (Input.GetMouseButton(1))
+        
+        //si le joueur à accès à ses déplacement et qu'il n'est pas en combat
+
+        if (GetComponent<VariableDuJoueur>().acces && !GetComponent<VariableDuJoueur>().modeCombat)
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
+
+            if (velocity.y < 0)
+            {
+                velocity.y = -2f;
+            }
 
 
-        if (velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
 
-        //input ZQSD
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+            //input ZQSD
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
 
-        //rotate
-        Vector3 viewDirection = transform.position - new Vector3(GetComponent<VariableDuJoueur>().camer.position.x, transform.position.y, GetComponent<VariableDuJoueur>().camer.position.z);
-        GetComponent<VariableDuJoueur>().orientation.forward = viewDirection.normalized;
+            //rotate
+            Vector3 viewDirection = transform.position - new Vector3(GetComponent<VariableDuJoueur>().camer.position.x, transform.position.y, GetComponent<VariableDuJoueur>().camer.position.z);
+            GetComponent<VariableDuJoueur>().orientation.forward = viewDirection.normalized;
 
 
-        //set up en vector3
-        Vector3 move = GetComponent<VariableDuJoueur>().orientation.forward * z + GetComponent<VariableDuJoueur>().orientation.right * x;
+            //set up en vector3
+            Vector3 move = GetComponent<VariableDuJoueur>().orientation.forward * z + GetComponent<VariableDuJoueur>().orientation.right * x;
 
-        //si pas immobile
-        if (move != Vector3.zero)
-        {
-            //deplacement
-            GetComponent<VariableDuJoueur>().controller.Move(move * GetComponent<VariableDuJoueur>().speed * Time.deltaTime);
-            transform.forward = Vector3.Lerp(transform.forward, move.normalized, Time.deltaTime * GetComponent<VariableDuJoueur>().rotationSpeed);
+            //si pas immobile
+            if (move != Vector3.zero)
+            {
+                //deplacement
+                GetComponent<VariableDuJoueur>().controller.Move(move * GetComponent<VariableDuJoueur>().speed * Time.deltaTime);
+                transform.forward = Vector3.Lerp(transform.forward, move.normalized, Time.deltaTime * GetComponent<VariableDuJoueur>().rotationSpeed);
+            }
         }
 
     }
