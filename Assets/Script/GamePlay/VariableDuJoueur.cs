@@ -51,7 +51,7 @@ public class VariableDuJoueur : MonoBehaviour
 
         //animation de déplacement du personnage
         //animation
-        if ((GetComponent<DeplacementHorsCombat>().x != 0 || GetComponent<DeplacementHorsCombat>().z != 0))
+        if ((GetComponent<DeplacementJoueur>().x != 0 || GetComponent<DeplacementJoueur>().z != 0))
         {
             anim.SetBool("Move", true);
         }
