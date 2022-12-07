@@ -28,6 +28,10 @@ public class VariableDuJoueur : MonoBehaviour
     public bool acces;
     public bool modeCombat;
 
+    [Header("Animation")]
+    public Animator anim;
+    public string animationIsPlaying;
+
     private void Update()
     {
 
@@ -43,6 +47,20 @@ public class VariableDuJoueur : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+
+
+        //animation de déplacement du personnage
+        //animation
+        if ((GetComponent<DeplacementHorsCombat>().x != 0 || GetComponent<DeplacementHorsCombat>().z != 0))
+        {
+            anim.SetBool("Move", true);
+        }
+        else
+        {
+            anim.SetBool("Move", false);
+        }
+
+
 
 
         //rotation du personnage

@@ -9,6 +9,8 @@ using UnityEngine;
 public class DeplacementHorsCombat : MonoBehaviour
 {
 
+    public float x;
+    public float z;
     Vector3 velocity;
 
 
@@ -38,8 +40,8 @@ public class DeplacementHorsCombat : MonoBehaviour
 
 
             //input ZQSD
-            float x = Input.GetAxis("Horizontal")*-1;
-            float z = Input.GetAxis("Vertical")*-1;
+            x = Input.GetAxis("Horizontal")*-1;
+            z = Input.GetAxis("Vertical")*-1;
 
             //rotate
             Vector3 viewDirection = transform.position - new Vector3(GetComponent<VariableDuJoueur>().camer.position.x, transform.position.y, GetComponent<VariableDuJoueur>().camer.position.z);
