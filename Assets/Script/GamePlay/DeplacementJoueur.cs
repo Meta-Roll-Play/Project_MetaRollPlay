@@ -16,16 +16,6 @@ public class DeplacementJoueur : MonoBehaviour
     public float z;
     Vector3 velocity;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        /*lock du curseur
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        */
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -34,6 +24,7 @@ public class DeplacementJoueur : MonoBehaviour
         if (GetComponent<VariableDuJoueur>().acces)
         {
 
+            //affichage texte
             txtStep.text = string.Concat("Pas restant : ",Mathf.RoundToInt(step+0.5f));
 
 
