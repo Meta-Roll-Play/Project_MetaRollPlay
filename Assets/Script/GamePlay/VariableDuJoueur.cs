@@ -19,7 +19,9 @@ public class VariableDuJoueur : MonoBehaviour
     public float rotationSpeed;
     public Transform camer;
     public float mouseX;
+    public float mouseY;
     public float xRotation;
+    public float yRotation;
     public float sensi;
 
     [Header("Possession")]
@@ -45,8 +47,15 @@ public class VariableDuJoueur : MonoBehaviour
 
         //rotation du personnage
         mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensi;
+        mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensi;
+        
+
         xRotation += mouseX;
+        yRotation -= mouseY;
+        yRotation = Mathf.Clamp(yRotation, -90f, 90f);
+
         transform.rotation = Quaternion.Euler(0, xRotation, 0);
+        orientation.rotation = Quaternion.Euler(yRotation,xRotation, 0);
     }
 
 

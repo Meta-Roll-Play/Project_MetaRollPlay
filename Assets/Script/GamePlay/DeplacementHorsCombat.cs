@@ -38,8 +38,8 @@ public class DeplacementHorsCombat : MonoBehaviour
 
 
             //input ZQSD
-            float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
+            float x = Input.GetAxis("Horizontal")*-1;
+            float z = Input.GetAxis("Vertical")*-1;
 
             //rotate
             Vector3 viewDirection = transform.position - new Vector3(GetComponent<VariableDuJoueur>().camer.position.x, transform.position.y, GetComponent<VariableDuJoueur>().camer.position.z);
