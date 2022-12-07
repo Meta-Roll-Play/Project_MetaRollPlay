@@ -26,7 +26,7 @@ public class FreeCam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Screen.lockCursor = true;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -76,7 +76,7 @@ public class FreeCam : MonoBehaviour
         // Unlock cursor
         if (Input.GetKeyDown(unlock))
         {
-            Screen.lockCursor = (Screen.lockCursor == false) ? true : false;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }
