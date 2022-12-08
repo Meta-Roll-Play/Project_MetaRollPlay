@@ -81,4 +81,9 @@ public class FreeCam : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
     }
+    
+    public void LockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 }

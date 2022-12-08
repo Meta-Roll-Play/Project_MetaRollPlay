@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
             FixValue(ref health, ref maxHealth);
         }
     }
-
+    
     // Fonction d'initialisation d'une variable à son maximum
     public void InitializeToMax(ref int value, int maxValue)
     {
