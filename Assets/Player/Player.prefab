@@ -1244,6 +1244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 4549943412314999560}
   Life: 100
+  initiative: 5
   speed: 5
   orientation: {fileID: 4549943412732973599}
   rotationSpeed: 8
@@ -1273,6 +1274,7 @@ MonoBehaviour:
   step: 10
   x: 0
   z: 0
+  MJcontroller: {fileID: 0}
 --- !u!1 &3794501356786517809
 GameObject:
   m_ObjectHideFlags: 0

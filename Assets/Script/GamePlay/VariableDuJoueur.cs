@@ -10,6 +10,8 @@ public class VariableDuJoueur : MonoBehaviour
     public CharacterController controller;
     [Header("Attribut")]
     public int Life;
+    public float initiative;
+
 
     [Header("Movement")]
     public float speed;
