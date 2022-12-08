@@ -6,6 +6,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*************************************************************************************
+ *
+ *  Hugo SIMON
+ * 
+ *  This script is for the UI of the lobby
+ * 
+ ************************************************************************************/
+
 public class MenuLancement : MonoBehaviour
 {
     [SerializeField] private GameObject MenuBase;

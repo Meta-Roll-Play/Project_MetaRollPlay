@@ -5,6 +5,15 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/************************************************************************************
+ *
+ *  Hugo SIMON
+ * 
+ *  This script is used to control the player's movement and actions.
+ *  It is attached to the player prefab.
+ * 
+ ************************************************************************************/
+
 public class Player : NetworkBehaviour
 {
     private void Update()

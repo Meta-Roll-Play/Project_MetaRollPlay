@@ -7,6 +7,15 @@ using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 using UnityEngine.UI;
 
+/************************************************************************************
+ *
+ *  Hugo SIMON
+ * 
+ *  This script is attached to the NetworkManager object in the scene.
+ *  It is responsible for setting up the network and connecting to the server.
+ * 
+ ************************************************************************************/
+
 public class NetworkManagementUI : MonoBehaviour
 {
     [SerializeField] private Button BTNHost;
