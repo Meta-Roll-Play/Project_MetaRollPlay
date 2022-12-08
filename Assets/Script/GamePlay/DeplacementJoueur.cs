@@ -16,6 +16,26 @@ public class DeplacementJoueur : MonoBehaviour
     public float z;
     Vector3 velocity;
 
+    public GameObject MJcontroller;
+
+    void Start()
+    {
+        MJcontroller = GameObject.Find("Plane");
+    }
+
+
+
+    //si le joueur a fini de joué, et qu'il appuis sur le bouton
+    public void TaskOnClick()
+    {
+        if (GetComponent<VariableDuJoueur>().acces)
+        {
+            MJcontroller.GetComponent<GestionDeTour>().joueurActif +=1;
+            GetComponent<VariableDuJoueur>().acces = false;
+        }
+    }
+
+
     // Update is called once per frame
     void Update()
     {
