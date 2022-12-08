@@ -34,7 +34,7 @@ public class PossessionMJ : MonoBehaviour
 
         if (possession)
         {
-            transform.position = ObjectPosseder.transform.position;
+            transform.position = new Vector3(ObjectPosseder.transform.position.x, ObjectPosseder.transform.position.y+2, ObjectPosseder.transform.position.z);
         }
     }
 }

@@ -1431,6 +1431,7 @@ GameObject:
   - component: {fileID: 4549943412314999562}
   - component: {fileID: -6771986210613553139}
   - component: {fileID: 523789438283054051}
+  - component: {fileID: 1199935901}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1589,6 +1590,24 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
+--- !u!114 &1199935901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3739620177175676932}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.18039216, g: 1, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &3794501356786517809
 GameObject:
   m_ObjectHideFlags: 0
