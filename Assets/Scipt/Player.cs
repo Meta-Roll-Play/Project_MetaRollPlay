@@ -31,27 +31,5 @@ public class Player : NetworkBehaviour
         }
 
         transform.position += MoveDir * (Time.deltaTime * 5f);
-        
-        Debug.Log(IPManager.GetLocalIPAddress());
-    }
-    
-    public static class IPManager
-    {
-        public static string GetLocalIPAddress()
-        {
-            string localIP = "";
-            var host = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
-            foreach (var ip in host.AddressList)
-            {
-                if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-                {
-                    localIP += ip.ToString() + "\n";
-                }
-            }
-
-            return localIP;
-
-            throw new System.Exception("No network adapters with an IPv4 address in the system!");
-        }
     }
 }
