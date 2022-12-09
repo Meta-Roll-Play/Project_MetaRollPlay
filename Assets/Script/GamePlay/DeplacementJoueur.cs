@@ -6,10 +6,11 @@ using TMPro;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using Unity.Netcode;
+using Photon.Pun;
+using Photon.Realtime;
 
 
-public class DeplacementJoueur : NetworkBehaviour
+public class DeplacementJoueur : MonoBehaviourPunCallbacks
 {
     public TextMeshProUGUI txtStep;
 
@@ -42,21 +43,53 @@ public class DeplacementJoueur : NetworkBehaviour
     void Update()
     {
 
-        if (OwnerClientId.ToString() == "0" )
+        if (!photonView.IsMine)
+            return;
+
+        //si le joueur à accès à ses déplacement et qu'il n'est pas en combat
+        if (GetComponent<VariableDuJoueur>().acces)
         {
 
-            //si le joueur à accès à ses déplacement et qu'il n'est pas en combat
-            if (GetComponent<VariableDuJoueur>().acces)
+            //affichage texte
+            txtStep.text = string.Concat("Pas restant : ", Mathf.RoundToInt(step + 0.5f));
+
+
+
+            if (!GetComponent<VariableDuJoueur>().modeCombat)
             {
 
-                //affichage texte
-                txtStep.text = string.Concat("Pas restant : ", Mathf.RoundToInt(step + 0.5f));
 
-
-
-                if (!GetComponent<VariableDuJoueur>().modeCombat)
+                if (velocity.y < 0)
                 {
+                    velocity.y = -2f;
+                }
+                //input ZQSD
+                x = Input.GetAxis("Horizontal") * -1;
+                z = Input.GetAxis("Vertical") * -1;
 
+                //rotate
+                Vector3 viewDirection = transform.position - new Vector3(GetComponent<VariableDuJoueur>().camer.position.x, transform.position.y, GetComponent<VariableDuJoueur>().camer.position.z);
+                GetComponent<VariableDuJoueur>().orientation.forward = viewDirection.normalized;
+
+
+                //set up en vector3
+                Vector3 move = GetComponent<VariableDuJoueur>().orientation.forward * z + GetComponent<VariableDuJoueur>().orientation.right * x;
+
+                //si pas immobile
+                if (move != Vector3.zero)
+                {
+                    //deplacement
+                    GetComponent<VariableDuJoueur>().controller.Move(move * GetComponent<VariableDuJoueur>().speed * Time.deltaTime);
+                    transform.forward = Vector3.Lerp(transform.forward, move.normalized, Time.deltaTime * GetComponent<VariableDuJoueur>().rotationSpeed);
+                }
+
+            }
+            else//si il est en mode combat
+            {
+                //si il reste au joueur des pas il peut bouger 
+
+                if (step > 0)
+                {
 
                     if (velocity.y < 0)
                     {
@@ -80,53 +113,21 @@ public class DeplacementJoueur : NetworkBehaviour
                         //deplacement
                         GetComponent<VariableDuJoueur>().controller.Move(move * GetComponent<VariableDuJoueur>().speed * Time.deltaTime);
                         transform.forward = Vector3.Lerp(transform.forward, move.normalized, Time.deltaTime * GetComponent<VariableDuJoueur>().rotationSpeed);
+                        step -= Time.deltaTime;
                     }
+
 
                 }
-                else//si il est en mode combat
+                else
                 {
-                    //si il reste au joueur des pas il peut bouger 
+                    //reset du mouvement
+                    x = 0;
+                    z = 0;
+                    GetComponent<VariableDuJoueur>().controller.Move(new Vector3(0f, 0f, 0f));
 
-                    if (step > 0)
-                    {
-
-                        if (velocity.y < 0)
-                        {
-                            velocity.y = -2f;
-                        }
-                        //input ZQSD
-                        x = Input.GetAxis("Horizontal") * -1;
-                        z = Input.GetAxis("Vertical") * -1;
-
-                        //rotate
-                        Vector3 viewDirection = transform.position - new Vector3(GetComponent<VariableDuJoueur>().camer.position.x, transform.position.y, GetComponent<VariableDuJoueur>().camer.position.z);
-                        GetComponent<VariableDuJoueur>().orientation.forward = viewDirection.normalized;
-
-
-                        //set up en vector3
-                        Vector3 move = GetComponent<VariableDuJoueur>().orientation.forward * z + GetComponent<VariableDuJoueur>().orientation.right * x;
-
-                        //si pas immobile
-                        if (move != Vector3.zero)
-                        {
-                            //deplacement
-                            GetComponent<VariableDuJoueur>().controller.Move(move * GetComponent<VariableDuJoueur>().speed * Time.deltaTime);
-                            transform.forward = Vector3.Lerp(transform.forward, move.normalized, Time.deltaTime * GetComponent<VariableDuJoueur>().rotationSpeed);
-                            step -= Time.deltaTime;
-                        }
-
-
-                    }
-                    else
-                    {
-                        //reset du mouvement
-                        x = 0;
-                        z = 0;
-                        GetComponent<VariableDuJoueur>().controller.Move(new Vector3(0f, 0f, 0f));
-
-                    }
                 }
             }
+
         }
     }
 }
