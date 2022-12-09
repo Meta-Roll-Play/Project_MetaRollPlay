@@ -36,6 +36,13 @@ public class VariableDuJoueur : NetworkBehaviour
     public Animator anim;
     public string animationIsPlaying;
 
+
+    public void Start()
+    {
+        GameObject.Find("Plane").GetComponent<GestionDeTour>().listJoueur.Add(transform.gameObject);
+    }
+
+
     private void Update()
     {
 

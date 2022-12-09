@@ -27,47 +27,40 @@ public class GestionDeTour : NetworkBehaviour
     //trier les joueurs par initiative
     public int joueurActif;
 
-    private void Start()
-    {
-        for(int i = 0; i < GameObject.Find("PlayerManager").transform.childCount ; i++)
-        {
-            listJoueur.Add(GameObject.Find("PlayerManager").transform.GetChild(i).gameObject);
-        }
-    }
-
 
     // Update is called once per frame
     void Update()
     {
 
-        //quand tout les joueurs on joué, joueurActif > GameObject.Find("PlayerManager").transform.childCount-1, trier chaque joueur par initiative
-        if (joueurActif > GameObject.Find("PlayerManager").transform.childCount - 1)
+        if (listJoueur.Count > 0)
         {
-            for (int i = 0; i < listJoueur.Count-1 ; i++)
+            //quand tout les joueurs on joué, joueurActif > GameObject.Find("PlayerManager").transform.childCount-1, trier chaque joueur par initiative
+            if (joueurActif > listJoueur.Count - 1)
             {
-                if (listJoueur[i].GetComponent<VariableDuJoueur>().initiative < listJoueur[i+1].GetComponent<VariableDuJoueur>().initiative)
+                for (int i = 0; i < listJoueur.Count - 1; i++)
                 {
-                    GameObject tmp = listJoueur[i];
-                    listJoueur[i] = listJoueur[i+1];
-                    listJoueur[i+1] = tmp;
+                    if (listJoueur[i].GetComponent<VariableDuJoueur>().initiative < listJoueur[i + 1].GetComponent<VariableDuJoueur>().initiative)
+                    {
+                        GameObject tmp = listJoueur[i];
+                        listJoueur[i] = listJoueur[i + 1];
+                        listJoueur[i + 1] = tmp;
+                    }
+                }
+                joueurActif = 0;
+            }
+            //mettre les accès au joueur actif, les enlever au autre
+            for (int i = 0; i < listJoueur.Count; i++)
+            {
+                if (i != joueurActif)
+                {
+                    listJoueur[i].GetComponent<VariableDuJoueur>().acces = false;
+                }
+                else
+                {
+                    listJoueur[joueurActif].GetComponent<VariableDuJoueur>().acces = true;
                 }
             }
-            joueurActif = 0;
         }
-
-        //mettre les accès au joueur actif, les enlever au autre
-        for(int i = 0; i < listJoueur.Count; i++)
-        {
-            if (i != joueurActif)
-            {
-                listJoueur[i].GetComponent<VariableDuJoueur>().acces = false;
-            }
-            else
-            {
-                listJoueur[joueurActif].GetComponent<VariableDuJoueur>().acces = true;
-            }
-        }
-
 
         //gestion des variables par le MJ
         //si tout les joueurs sont selectionner,
@@ -78,13 +71,13 @@ public class GestionDeTour : NetworkBehaviour
         }//sinon le MJ choisi un joueur
         else
         {
-            if (selection >= GameObject.Find("PlayerManager").transform.childCount)
+            if (selection >= listJoueur.Count)
             {
                 selection = 0;
             }
             if (selection < 0)
             {
-                selection = GameObject.Find("PlayerManager").transform.childCount-1;
+                selection = listJoueur.Count;
             }
         }
 

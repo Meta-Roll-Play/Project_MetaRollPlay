@@ -17,7 +17,7 @@ public class ChangementPrefabNetwork : NetworkBehaviour
 
         //si c'est l'owner alors il doit voir son MJcontroller, les autres sont détruit, les canvas des player sont détruit
         //si ce n'est pas l'owner alors il doit voir le MJcontroller de l'owner, detruire les canvas des player 
-        /*
+        
         if (IsOwner)
         {
 
@@ -42,6 +42,6 @@ public class ChangementPrefabNetwork : NetworkBehaviour
                 //destruction de la caméra du joueur
                 Destroy(transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject);
             }
-        }*/
+        }
     }
 }
