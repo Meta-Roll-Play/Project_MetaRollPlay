@@ -5,8 +5,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class GestionDeTour : MonoBehaviour
+
+public class GestionDeTour : NetworkBehaviour
 {
 
     //selection de Joueur

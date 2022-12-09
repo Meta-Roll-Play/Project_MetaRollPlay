@@ -10,6 +10,7 @@ public class NetworkSpawnPrefab : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!IsOwner) { return; }
         Debug.Log("Id : " + OwnerClientId);
         if(OwnerClientId == 0)
         {
@@ -17,6 +18,13 @@ public class NetworkSpawnPrefab : NetworkBehaviour
             go.GetComponent<NetworkObject>().Spawn();
             Destroy(this);
         }
+        if (OwnerClientId > 0)
+        {
+            GameObject go = Instantiate(prefab2, Vector3.zero, Quaternion.identity);
+            go.GetComponent<NetworkObject>().Spawn();
+            Destroy(this);
+        }
+        //GameObject.Find("NetworkManager").GetComponent<NetworkManager>().NetworkConfig.PlayerPrefab = prefab2;
     }
 
     // Update is called once per frame

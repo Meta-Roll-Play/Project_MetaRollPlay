@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
 //Fait par Callaghan
 
-public class FreeCam : MonoBehaviour
+public class FreeCam : NetworkBehaviour
 {
     // Script that enable to move camera freely
     
