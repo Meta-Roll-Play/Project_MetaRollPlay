@@ -86,23 +86,29 @@ public class GestionDeTour : MonoBehaviourPunCallbacks
         //si le mj valide
         if (send)
         {
-            send = false;
-            if (all)
-            {
-                //si tout les joueurs sont selectionner, leurs donner les valeurs écrite
-                for (int j = 0; j < listJoueur.Count; j++)
+
+            //if (photonView.IsMine)
+            //{
+
+                if (all)
                 {
-                    listJoueur[j].GetComponent<VariableDuJoueur>().acces = acces;
-                    listJoueur[j].GetComponent<VariableDuJoueur>().modeCombat = modeCombat;
-                    listJoueur[j].GetComponent<DeplacementJoueur>().step = step;
+                    //si tout les joueurs sont selectionner, leurs donner les valeurs écrite
+                    for (int j = 0; j < listJoueur.Count; j++)
+                    {
+
+                        listJoueur[j].GetComponent<VariableDuJoueur>().acces = acces;
+                        listJoueur[j].GetComponent<VariableDuJoueur>().modeCombat = modeCombat;
+                        listJoueur[j].GetComponent<DeplacementJoueur>().step = step;
+                    }
                 }
-            }
-            else
-            {
-                listJoueur[selection].GetComponent<VariableDuJoueur>().acces = acces;
-                listJoueur[selection].GetComponent<VariableDuJoueur>().modeCombat = modeCombat;
-                listJoueur[selection].GetComponent<DeplacementJoueur>().step = step;
-            }
+                else
+                {
+                    listJoueur[selection].GetComponent<VariableDuJoueur>().acces = acces;
+                    listJoueur[selection].GetComponent<VariableDuJoueur>().modeCombat = modeCombat;
+                    listJoueur[selection].GetComponent<DeplacementJoueur>().step = step;
+                }
+            //}
+            send = false;
             acces = false;
             modeCombat = false;
             step = 0;

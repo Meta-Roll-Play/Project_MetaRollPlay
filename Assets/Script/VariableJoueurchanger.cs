@@ -9,6 +9,8 @@ using Photon.Realtime;
 public class VariableJoueurchanger : MonoBehaviourPunCallbacks, IPunObservable
 {
 
+    public int reciv;
+
     // Update is called once per frame
     void Update()
     {
