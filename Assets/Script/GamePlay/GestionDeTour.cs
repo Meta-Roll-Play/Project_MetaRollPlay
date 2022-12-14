@@ -5,10 +5,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Netcode;
+
+using Photon.Pun;
+using Photon.Realtime;
 
 
-public class GestionDeTour : NetworkBehaviour
+public class GestionDeTour : MonoBehaviourPunCallbacks
 {
 
     //selection de Joueur
