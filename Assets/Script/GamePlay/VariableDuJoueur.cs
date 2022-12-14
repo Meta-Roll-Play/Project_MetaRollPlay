@@ -46,7 +46,7 @@ public class VariableDuJoueur : MonoBehaviourPunCallbacks
             transform.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
             transform.GetChild(10).gameObject.SetActive(false);
         }
-        //GameObject.Find("Plane").GetComponent<GestionDeTour>().listJoueur.Add(transform.gameObject);
+        GameObject.Find("GestionMJManager").GetComponent<GestionDeTour>().listJoueur.Add(transform.gameObject);
     }
 
 
