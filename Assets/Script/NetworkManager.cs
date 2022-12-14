@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
+using UnityEngine.UI;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
@@ -12,12 +14,17 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public GameObject player;
     public GameObject MJ;
     public Transform startPoint;
+    
+    [SerializeField] private GameObject InputRoomName;
+    private string roomName;
 
 
     private void Awake()
     {
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.ConnectToRegion("eu");
+
+        roomName = InputRoomName.GetComponent<TMP_InputField>().text;
     }
 
     public override void OnConnectedToMaster()
@@ -38,7 +45,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         RoomOptions option = new RoomOptions();
         option.IsOpen = true;
         option.IsVisible = true;
-        PhotonNetwork.JoinOrCreateRoom("HUB", option, null);
+        PhotonNetwork.JoinOrCreateRoom(roomName, option, null);
     }
 
     public override void OnJoinedRoom()
@@ -52,17 +59,5 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.Instantiate(player.name, startPoint.position, Quaternion.identity);
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
