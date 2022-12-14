@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 //Fait par Callaghan
 
-public class FreeCam : MonoBehaviour
+public class FreeCam : MonoBehaviourPunCallbacks
 {
     // Script that enable to move camera freely
     
@@ -28,14 +30,26 @@ public class FreeCam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        if (!photonView.IsMine)
+        {
+            transform.parent.GetChild(1).gameObject.SetActive(false);
+            transform.GetChild(0).gameObject.SetActive(false);
+        }
+
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (!photonView.IsMine)
+            return;
+
+
         // Rotation
-        
+
         rotationX += Input.GetAxis("Mouse X") * cameraSensitivity * Time.deltaTime;
         rotationY += Input.GetAxis("Mouse Y") * cameraSensitivity * Time.deltaTime;
         rotationY = Mathf.Clamp(rotationY, -90, 90);

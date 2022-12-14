@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class DeplacementJoueur : MonoBehaviour
+
+public class DeplacementJoueur : MonoBehaviourPunCallbacks
 {
     public TextMeshProUGUI txtStep;
 
@@ -39,12 +42,15 @@ public class DeplacementJoueur : MonoBehaviour
     void Update()
     {
 
+        if (!photonView.IsMine)
+            return;
+
         //si le joueur à accès à ses déplacement et qu'il n'est pas en combat
         if (GetComponent<VariableDuJoueur>().acces)
         {
 
             //affichage texte
-            txtStep.text = string.Concat("Pas restant : ",Mathf.RoundToInt(step+0.5f));
+            txtStep.text = string.Concat("Pas restant : ", Mathf.RoundToInt(step + 0.5f));
 
 
 
@@ -116,10 +122,11 @@ public class DeplacementJoueur : MonoBehaviour
                     //reset du mouvement
                     x = 0;
                     z = 0;
-                    GetComponent<VariableDuJoueur>().controller.Move(new Vector3(0f,0f,0f));
+                    GetComponent<VariableDuJoueur>().controller.Move(new Vector3(0f, 0f, 0f));
 
                 }
             }
+
         }
     }
 }

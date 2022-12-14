@@ -1668,13 +1668,8 @@ MonoBehaviour:
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 506269097}
-    PlayerPrefab: {fileID: 4072457334364952576, guid: 83c7618d679263b4ab6a60f265099a3f, type: 3}
-    NetworkPrefabs:
-    - Override: 0
-      Prefab: {fileID: 3739620177175676932, guid: eff68d439845b1742a8a9b3735364075, type: 3}
-      SourcePrefabToOverride: {fileID: 0}
-      SourceHashToOverride: 0
-      OverridingTargetPrefab: {fileID: 0}
+    PlayerPrefab: {fileID: 7395576152243651439, guid: 25cb442eee056a0499f51921222b1fff, type: 3}
+    NetworkPrefabs: []
     TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
@@ -1683,7 +1678,7 @@ MonoBehaviour:
     TimeResyncInterval: 30
     EnsureNetworkVariableLengthSafety: 0
     EnableSceneManagement: 1
-    ForceSamePrefabs: 1
+    ForceSamePrefabs: 0
     RecycleNetworkIds: 1
     NetworkIdRecycleDelay: 120
     RpcHashSize: 0
@@ -1870,6 +1865,8 @@ GameObject:
   - component: {fileID: 564114214}
   - component: {fileID: 564114213}
   - component: {fileID: 564114212}
+  - component: {fileID: 564114216}
+  - component: {fileID: 564114217}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -1956,6 +1953,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &564114216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564114211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b551a8c9710601943af3cc7ddce2514a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listJoueur: []
+  all: 0
+  selection: 0
+  step: 0
+  modeCombat: 0
+  acces: 0
+  send: 0
+  joueurActif: 0
+--- !u!114 &564114217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564114211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 3647501438
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &579986192
 GameObject:
   m_ObjectHideFlags: 0
@@ -4116,7 +4149,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892180992}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0227d38ad57bd534890deaeab180a02a, type: 3}
   m_Name: 
