@@ -1,0 +1,15 @@
+Fiche personnage de : Hugo
+
+name : Hugo
+race : Félidé
+titre : Chevalier
+
+HP : 100
+HP Max : 100
+Force : 0
+Intelligence : 0
+Perception : 0
+Dexterite : 0
+Endurance : 0
+Charisme : 0
+
