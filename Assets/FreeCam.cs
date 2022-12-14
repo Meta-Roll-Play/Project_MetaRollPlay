@@ -30,6 +30,13 @@ public class FreeCam : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+
+        if (!photonView.IsMine)
+        {
+            transform.parent.GetChild(1).gameObject.SetActive(false);
+            transform.GetChild(0).gameObject.SetActive(false);
+        }
+
         Cursor.lockState = CursorLockMode.Locked;
     }
 

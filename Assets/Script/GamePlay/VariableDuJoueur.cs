@@ -41,6 +41,11 @@ public class VariableDuJoueur : MonoBehaviourPunCallbacks
     public void Start()
     {
         this.gameObject.transform.parent = GameObject.Find("PlayerManager").transform;
+        if (!photonView.IsMine)
+        {
+            transform.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(10).gameObject.SetActive(false);
+        }
         //GameObject.Find("Plane").GetComponent<GestionDeTour>().listJoueur.Add(transform.gameObject);
     }
 
