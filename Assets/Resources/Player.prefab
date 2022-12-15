@@ -1541,7 +1541,7 @@ MonoBehaviour:
   xRotation: 0
   yRotation: 0
   sensi: 100
-  acces: 1
+  acces: 0
   modeCombat: 0
   anim: {fileID: 7948344013960841412}
   animationIsPlaying: 

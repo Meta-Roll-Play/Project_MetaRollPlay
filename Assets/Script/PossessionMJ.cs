@@ -22,11 +22,13 @@ public class PossessionMJ : MonoBehaviour
                 if (possession)
                 {
                     ObjectPosseder = null;
+                    ObjectPosseder.GetComponent<DeplacementEnnemis>().possession = false;
                     possession = false;
                 }
                 else
                 {
                     ObjectPosseder = LookAt;
+                    ObjectPosseder.GetComponent<DeplacementEnnemis>().possession = true;
                     possession = true;
                 }
             }

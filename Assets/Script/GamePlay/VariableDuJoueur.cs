@@ -50,6 +50,7 @@ public class VariableDuJoueur : MonoBehaviourPunCallbacks
     }
 
 
+
     private void Update()
     {
 
