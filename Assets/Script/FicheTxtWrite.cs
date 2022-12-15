@@ -33,7 +33,8 @@ public class FicheTxtWrite : MonoBehaviour
 
     private void CreateTxtFile(string name)
     {
-        path = Application.dataPath + "/Fiches/" + name + ".txt";
+        path = Application.persistentDataPath + "/" + name + ".txt";
+        Debug.Log(Application.persistentDataPath);
         File.WriteAllText(path, "Fiche personnage de : " + name + "\n\n");
         File.AppendAllText(path, "name " + name + "\n");
     }
