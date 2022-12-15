@@ -113,5 +113,24 @@ public class GestionDeTour : MonoBehaviourPunCallbacks
             modeCombat = false;
             step = 0;
         }
+
+
+        //si les joueurs sont dans la fenetre du mj alors ils ont le OutLine sinon non
+        if (photonView.IsMine)
+        {
+            for (int i = 0; i < listJoueur.Count; i++)
+            {
+                if (listJoueur[i].GetComponent<Outline>() == null)
+                {
+                    listJoueur[i].AddComponent<Outline>();
+                    listJoueur[i].GetComponent<Outline>().OutlineColor = Color.green;
+                    listJoueur[i].GetComponent<Outline>().enabled = false ;
+                }
+            }
+        }
+
+
+
+
     }
 }

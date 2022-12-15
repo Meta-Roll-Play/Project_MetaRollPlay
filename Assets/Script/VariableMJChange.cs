@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Realtime;
 using Photon.Pun;
+using System;
 
 public class VariableMJChange : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -44,8 +45,6 @@ public class VariableMJChange : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-
-
             //recup des var
             GetComponent<GestionDeTour>().all = (bool)stream.ReceiveNext();
             GetComponent<GestionDeTour>().selection = (int)stream.ReceiveNext();
@@ -54,8 +53,7 @@ public class VariableMJChange : MonoBehaviourPunCallbacks, IPunObservable
             GetComponent<GestionDeTour>().acces = (bool)stream.ReceiveNext();
             GetComponent<GestionDeTour>().send = (bool)stream.ReceiveNext();
             GetComponent<GestionDeTour>().joueurActif = (int)stream.ReceiveNext();
-
-            if (GetComponent<GestionDeTour>().listJoueur.Count != 0)
+            if (GetComponent<GestionDeTour>().listJoueur.Count != 0 && stream.Count >10 )
             {
                 GetComponent<GestionDeTour>().listJoueur[GetComponent<GestionDeTour>().selection].GetComponent<VariableJoueurchanger>().reciv = (int)stream.ReceiveNext();
 
