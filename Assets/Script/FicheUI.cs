@@ -18,7 +18,9 @@ public class FicheUI : MonoBehaviour
     [SerializeField] private static List<TMP_Dropdown.OptionData> Race = new List<TMP_Dropdown.OptionData>();
 
     public GameObject DropDownRace;
-    public int PointAttribut;
+
+    [SerializeField] private TMP_InputField Point;
+    public int PointAttribut = 8;
     
     public struct RaceStruct
     {
@@ -38,9 +40,14 @@ public class FicheUI : MonoBehaviour
         AddToList("Humain", "Krobh", "Minéleste", "Félidé", "Nain", "Elfe", "Kylne");
         DropDownRace.GetComponent<TMP_Dropdown>().options = Race;
         
-        PointAttribut = RaceStructs[DropDownRace.GetComponent<TMP_Dropdown>().value].PointsAttributs;
+        Point.interactable = false;
         
         DefRace();
+    }
+
+    private void Update()
+    {
+        Point.text = PointAttribut.ToString();
     }
 
     public void OnChangeValue()

@@ -1,0 +1,16 @@
+Fiche personnage de : Justin Ptipeu
+
+name Justin Ptipeu
+race Elfe
+titre BG
+description Le mec est vraiment trop bg 
+
+HP 45
+HPMax 45
+Force 1
+Intelligence 1
+Perception 1
+Dexterite 1
+Endurance 1
+Charisme 1
+

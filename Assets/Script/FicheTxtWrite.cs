@@ -18,18 +18,18 @@ public class FicheTxtWrite : MonoBehaviour
     private string path;
 
     //NOM
-    [SerializeField] private GameObject Name;
-    [SerializeField] private GameObject Titre;
-    [SerializeField] private GameObject RaceDropdown;
-    [SerializeField] private GameObject Description;
+    public GameObject Name;
+    public GameObject Titre;
+    public GameObject RaceDropdown;
+    public GameObject Description;
     //STATS
-    [SerializeField] private GameObject CanvasPV;
-    [SerializeField] private GameObject Force;
-    [SerializeField] private GameObject Intelligence;
-    [SerializeField] private GameObject Perception;
-    [SerializeField] private GameObject Dexterite;
-    [SerializeField] private GameObject Endurance;
-    [SerializeField] private GameObject Charisme;
+    public GameObject CanvasPV;
+    public GameObject Force;
+    public GameObject Intelligence;
+    public GameObject Perception;
+    public GameObject Dexterite;
+    public GameObject Endurance;
+    public GameObject Charisme;
 
     private void CreateTxtFile(string name)
     {
@@ -45,7 +45,8 @@ public class FicheTxtWrite : MonoBehaviour
         // Race et Titre
         File.AppendAllText(path, 
             "race " + RaceDropdown.GetComponent<TMP_Dropdown>().options[RaceDropdown.GetComponent<TMP_Dropdown>().value].text + "\n"
-            + "titre " + Titre.GetComponent<TMP_InputField>().text + "\n\n");
+            + "titre " + Titre.GetComponent<TMP_InputField>().text + "\n"
+            + "description " + Description.GetComponent<TMP_InputField>().text + "\n\n");
         
         // Stats
         File.AppendAllText(path,
