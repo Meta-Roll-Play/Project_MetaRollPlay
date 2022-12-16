@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f229476cbb8b5f043ad04925e732b11f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ennemisSpawn: {fileID: 7165637997601170411, guid: 37ed292ee9ba6cc44b21732169b7859e, type: 3}
   ObjectPosseder: {fileID: 0}
   LookAt: {fileID: 0}
   possession: 0
