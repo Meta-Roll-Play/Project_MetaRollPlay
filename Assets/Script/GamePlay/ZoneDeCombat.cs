@@ -3,8 +3,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class ZoneDeCombat : MonoBehaviour
+
+public class ZoneDeCombat : NetworkBehaviour
 {
 
     //zone de combat

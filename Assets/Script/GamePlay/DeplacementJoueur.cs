@@ -4,10 +4,12 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class DeplacementJoueur : MonoBehaviour
+
+public class DeplacementJoueur : MonoBehaviourPunCallbacks
 {
     public TextMeshProUGUI txtStep;
 
@@ -16,16 +18,39 @@ public class DeplacementJoueur : MonoBehaviour
     public float z;
     Vector3 velocity;
 
+    public GameObject MJcontroller;
+
+    void Start()
+    {
+        MJcontroller = GameObject.Find("Plane");
+    }
+
+
+
+    //si le joueur a fini de joué, et qu'il appuis sur le bouton
+    public void TaskOnClick()
+    {
+        if (GetComponent<VariableDuJoueur>().acces)
+        {
+            MJcontroller.GetComponent<GestionDeTour>().joueurActif +=1;
+            GetComponent<VariableDuJoueur>().acces = false;
+        }
+    }
+
+
     // Update is called once per frame
     void Update()
     {
+
+        if (!photonView.IsMine)
+            return;
 
         //si le joueur à accès à ses déplacement et qu'il n'est pas en combat
         if (GetComponent<VariableDuJoueur>().acces)
         {
 
             //affichage texte
-            txtStep.text = string.Concat("Pas restant : ",Mathf.RoundToInt(step+0.5f));
+            txtStep.text = string.Concat("Pas restant : ", Mathf.RoundToInt(step + 0.5f));
 
 
 
@@ -97,10 +122,11 @@ public class DeplacementJoueur : MonoBehaviour
                     //reset du mouvement
                     x = 0;
                     z = 0;
-                    GetComponent<VariableDuJoueur>().controller.Move(new Vector3(0f,0f,0f));
+                    GetComponent<VariableDuJoueur>().controller.Move(new Vector3(0f, 0f, 0f));
 
                 }
             }
+
         }
     }
 }
