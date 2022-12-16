@@ -6,17 +6,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Variable de point de vie
+    /*// Variable de point de vie
     public int health = 80;
     // Variable de point de vie max
     public int maxHealth = 100;
     // Variable de montant de dégâts
-    public int damageValue = 10;
+    public int damageValue = 10;*/
 
     // Update is called once per frame
     void Update()
     {
-        // Affichage des points de vie et de mana
+        /*// Affichage des points de vie et de mana
         Debug.Log("Health : " + health + "/" + maxHealth);
 
         // Si on appuie sur la touche i
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
             ChangeValue(damageValue,  ref health);
             // On fixe les erreurs de valeur
             FixValue(ref health, ref maxHealth);
-        }
+        }*/
     }
     
     // Fonction d'initialisation d'une variable à son maximum

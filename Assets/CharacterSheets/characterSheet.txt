@@ -1,0 +1,3 @@
+nom Lupushangren
+maxh 100
+hp 30
