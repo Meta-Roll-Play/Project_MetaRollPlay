@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using TMPro;
+using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +20,7 @@ using UnityEngine.UI;
 public class LimiteSlider : MonoBehaviour
 {
     [SerializeField] private GameObject ValueBase;
+    [SerializeField] private TMP_InputField Stats;
     [SerializeField] private string ValueName;
     private int BaseValue;
     
@@ -89,5 +92,8 @@ public class LimiteSlider : MonoBehaviour
             }
             previousValue = (int)GetComponent<Slider>().value;
         }
+        
+        //Affiche la valeur du slider dans le TMP_InputField
+        Stats.text = GetComponent<Slider>().value.ToString(CultureInfo.InvariantCulture);
     }
 }
