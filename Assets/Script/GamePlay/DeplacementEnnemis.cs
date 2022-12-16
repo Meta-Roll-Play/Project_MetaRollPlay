@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
-
+using Unity.VisualScripting;
 
 public class DeplacementEnnemis : MonoBehaviourPunCallbacks
 {
@@ -21,9 +21,9 @@ public class DeplacementEnnemis : MonoBehaviourPunCallbacks
     public float speed;
 
     [Header("Camera du MJ")]
-    public Transform orientation;
     public float rotationSpeed;
     public Transform camer;
+    public Transform orientation;
     public float mouseX;
     public float mouseY;
     public float xRotation;
@@ -34,6 +34,10 @@ public class DeplacementEnnemis : MonoBehaviourPunCallbacks
     public bool possession;
     public bool acces;
     public bool modeCombat;
+
+    public bool canAttack;
+    public bool isAttack;
+
 
     [Header("Animation")]
     public Animator anim;
@@ -50,13 +54,22 @@ public class DeplacementEnnemis : MonoBehaviourPunCallbacks
     {
         MJcontroller = GameObject.Find("MJController(Clone)");
         camer = MJcontroller.transform.GetChild(0).GetChild(1).transform;
-        orientation = MJcontroller.transform.GetChild(2).transform;
+        camer = MJcontroller.transform.GetChild(0).GetChild(2).transform;
     }
 
 
     // Update is called once per frame
     void Update()
     {
+
+        if (Life <= 0)
+        {
+            if (possession)
+            {
+                MJcontroller.transform.GetChild(0).GetComponent<PossessionMJ>().possession = false;
+            }
+            Destroy(gameObject);
+        }
 
         if (!possession || !acces)
             return;
@@ -76,24 +89,48 @@ public class DeplacementEnnemis : MonoBehaviourPunCallbacks
             z = Input.GetAxis("Vertical") * -1;
 
             //rotate
-            Vector3 viewDirection = transform.position - new Vector3(GetComponent<DeplacementEnnemis>().camer.position.x, transform.position.y, GetComponent<DeplacementEnnemis>().camer.position.z);
-            GetComponent<DeplacementEnnemis>().orientation.forward = viewDirection.normalized;
+            Vector3 viewDirection = orientation.position - new Vector3(camer.position.x, orientation.position.y, camer.position.z);
+            orientation.forward = viewDirection.normalized;
 
 
             //set up en vector3
-            Vector3 move = GetComponent<DeplacementEnnemis>().orientation.forward * z + GetComponent<DeplacementEnnemis>().orientation.right * x;
+            Vector3 move = orientation.forward * z + orientation.right * x;
 
             //si pas immobile
             if (move != Vector3.zero)
             {
                 //deplacement
-                GetComponent<DeplacementEnnemis>().controller.Move(move * GetComponent<DeplacementEnnemis>().speed * Time.deltaTime);
-                transform.forward = Vector3.Lerp(transform.forward, move.normalized, Time.deltaTime * GetComponent<DeplacementEnnemis>().rotationSpeed);
+                controller.Move(move * speed * Time.deltaTime);
+                orientation.forward = Vector3.Lerp(orientation.forward, move.normalized, Time.deltaTime * rotationSpeed);
             }
 
         }
         else//si il est en mode combat
         {
+
+
+
+            if (canAttack && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") && isAttack)
+            {
+                canAttack = false;
+                anim.SetBool("IsAttack", false);
+                isAttack = false;
+            }
+
+
+            if (Input.GetMouseButtonDown(0))
+            {
+
+                if (canAttack && !isAttack)
+                {
+                    isAttack = true;
+                    anim.SetBool("IsAttack",true);
+                }
+            }
+
+
+
+
             //si il reste au joueur des pas il peut bouger 
 
             if (step > 0)
@@ -108,19 +145,19 @@ public class DeplacementEnnemis : MonoBehaviourPunCallbacks
                 z = Input.GetAxis("Vertical") * -1;
 
                 //rotate
-                Vector3 viewDirection = transform.position - new Vector3(GetComponent<DeplacementEnnemis>().camer.position.x, transform.position.y, GetComponent<DeplacementEnnemis>().camer.position.z);
-                GetComponent<DeplacementEnnemis>().orientation.forward = viewDirection.normalized;
+                Vector3 viewDirection = orientation.position - new Vector3(camer.position.x, orientation.position.y, camer.position.z);
+                orientation.forward = viewDirection.normalized;
 
 
                 //set up en vector3
-                Vector3 move = GetComponent<DeplacementEnnemis>().orientation.forward * z + GetComponent<DeplacementEnnemis>().orientation.right * x;
+                Vector3 move = orientation.forward * z + orientation.right * x;
 
                 //si pas immobile
                 if (move != Vector3.zero)
                 {
                     //deplacement
-                    GetComponent<DeplacementEnnemis>().controller.Move(move * GetComponent<DeplacementEnnemis>().speed * Time.deltaTime);
-                    transform.forward = Vector3.Lerp(transform.forward, move.normalized, Time.deltaTime * GetComponent<DeplacementEnnemis>().rotationSpeed);
+                    controller.Move(move * speed * Time.deltaTime);
+                    orientation.forward = Vector3.Lerp(orientation.forward, move.normalized, Time.deltaTime * rotationSpeed);
                     step -= Time.deltaTime;
                 }
 
@@ -135,6 +172,8 @@ public class DeplacementEnnemis : MonoBehaviourPunCallbacks
 
             }
         }
+        transform.LookAt(orientation.transform.position);
+        transform.rotation = Quaternion.Euler(transform.rotation.x,0,transform.rotation.z);
 
     }
 }

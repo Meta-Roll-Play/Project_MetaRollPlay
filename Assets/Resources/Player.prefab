@@ -1543,6 +1543,8 @@ MonoBehaviour:
   sensi: 100
   acces: 0
   modeCombat: 0
+  canAttack: 0
+  isAttack: 0
   anim: {fileID: 7948344013960841412}
   animationIsPlaying: 
 --- !u!114 &4549943412314999562
@@ -3100,6 +3102,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.01, y: 0.03, z: 0.07547125}
   m_Center: {x: 0, y: 0, z: 0.02865836}
+--- !u!114 &7485155593109138805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7419043004396942249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1cdd30ddd9b5ee4ba36c8e21de8069b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 3739620177175676932}
 --- !u!4 &7907877716192225555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cca48685949f59d43b7138b95838f052, type: 3}

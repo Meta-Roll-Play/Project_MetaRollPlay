@@ -21,8 +21,9 @@ public class PossessionMJ : MonoBehaviour
             {
                 if (possession)
                 {
-                    ObjectPosseder = null;
+
                     ObjectPosseder.GetComponent<DeplacementEnnemis>().possession = false;
+                    ObjectPosseder = null;
                     possession = false;
                 }
                 else
