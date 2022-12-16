@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class PossessionMJ : MonoBehaviour
 {
+
+    public GameObject ennemisSpawn;
     public GameObject ObjectPosseder;
     public GameObject LookAt;
     public bool possession;
@@ -14,6 +16,13 @@ public class PossessionMJ : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Instantiate(ennemisSpawn, new Vector3(0,2.5f,0), Quaternion.identity, GameObject.Find("TerrainManager").transform);
+        }
+
+
         LookAt = transform.GetChild(0).GetComponent<LookAt>().colliderActif;
         if (LookAt != null)
         {
