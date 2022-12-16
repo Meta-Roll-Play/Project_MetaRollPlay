@@ -17,16 +17,19 @@ public class PossessionMJ : MonoBehaviour
         LookAt = transform.GetChild(0).GetComponent<LookAt>().colliderActif;
         if (LookAt != null)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.V))
             {
                 if (possession)
                 {
+
+                    ObjectPosseder.GetComponent<DeplacementEnnemis>().possession = false;
                     ObjectPosseder = null;
                     possession = false;
                 }
                 else
                 {
                     ObjectPosseder = LookAt;
+                    ObjectPosseder.GetComponent<DeplacementEnnemis>().possession = true;
                     possession = true;
                 }
             }

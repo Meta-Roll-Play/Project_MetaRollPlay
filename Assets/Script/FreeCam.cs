@@ -34,6 +34,7 @@ public class FreeCam : MonoBehaviourPunCallbacks
         if (!photonView.IsMine)
         {
             transform.parent.GetChild(1).gameObject.SetActive(false);
+            transform.GetChild(1).gameObject.SetActive(false);
             transform.GetChild(0).gameObject.SetActive(false);
         }
 

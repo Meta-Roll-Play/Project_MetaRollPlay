@@ -32,6 +32,8 @@ public class VariableDuJoueur : MonoBehaviourPunCallbacks
     [Header("Possession")]
     public bool acces;
     public bool modeCombat;
+    public bool canAttack;
+    public bool isAttack;
 
     [Header("Animation")]
     public Animator anim;
@@ -50,8 +52,16 @@ public class VariableDuJoueur : MonoBehaviourPunCallbacks
     }
 
 
+
     private void Update()
     {
+
+        if (Life <= 0)
+        {
+            anim.SetBool("Death", true);
+            return;
+        }
+
 
         if (!photonView.IsMine)
             return;
@@ -68,6 +78,23 @@ public class VariableDuJoueur : MonoBehaviourPunCallbacks
             Cursor.visible = false;
         }
 
+
+
+        if (canAttack && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") && isAttack)
+        {
+            canAttack = false;
+            anim.SetBool("IsAttack", false);
+            isAttack = false;
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+
+            if (canAttack && !isAttack)
+            {
+                isAttack = true;
+                anim.SetBool("IsAttack", true);
+            }
+        }
 
         //animation de déplacement du personnage
         //animation
